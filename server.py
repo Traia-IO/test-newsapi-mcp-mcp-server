@@ -100,7 +100,7 @@ logger.info(f"✅ FastMCP server created")
         amount="2000",  # 0.002 tokens
         asset=TokenAsset(
             address="0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
-            decimals=None,
+            decimals=6,
             network="sepolia",
             eip712=EIP712Domain(
                 name="IATPWallet",
@@ -151,13 +151,14 @@ async def search_everything(
 
     Example Usage:
         # Minimal (required params only):
-        await search_everything()
+        await search_everything(q="artificial intelligence")
 
         # With optional parameters:
         await search_everything(
         q="artificial intelligence",
         qInTitle="AI regulation",
-        sources="bbc-news"
+        sources="bbc-news",
+        domains="bbc.co.uk"
     )
 
         Note: 'context' parameter is auto-injected by MCP framework
