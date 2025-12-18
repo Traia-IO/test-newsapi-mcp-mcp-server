@@ -113,16 +113,16 @@ logger.info(f"✅ FastMCP server created")
 )
 async def search_everything(
     context: Context,
-    q: str = None,
-    qInTitle: str = None,
-    sources: str = None,
-    domains: str = None,
-    excludeDomains: str = None,
-    from_: str = None,
-    to: str = None,
+    q: Optional[str] = None,
+    qInTitle: Optional[str] = None,
+    sources: Optional[str] = None,
+    domains: Optional[str] = None,
+    excludeDomains: Optional[str] = None,
+    from_: Optional[str] = None,
+    to: Optional[str] = None,
     language: str = "en",
     sortBy: str = "publishedAt",
-    searchIn: str = None,
+    searchIn: Optional[str] = None,
     pageSize: int = 20,
     page: int = 1
 ) -> Dict[str, Any]:
@@ -183,6 +183,7 @@ async def search_everything(
             "pageSize": pageSize,
             "page": page
         }
+        params = {k: v for k, v in params.items() if v is not None}
         headers = {}
         if api_key:
             headers["Authorization"] = f"Bearer {api_key}"
